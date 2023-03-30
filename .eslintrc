@@ -1,0 +1,18 @@
+{
+  "root": true,
+  "extends": [ "@nuxtjs", ".eslintrc-auto-import.json" ],
+  "globals": { "uni": "readonly", "getCurrentPages":"readonly" },
+  "rules": {
+    "no-console": [ 1, { "allow": ["info", "warn", "error"] }],
+    "space-before-function-paren": ["error", {
+      "anonymous": "never",
+      "named": "never",
+      "asyncArrow": "always"
+    }],
+    "arrow-parens": ["warn", "as-needed"],
+    "curly": ["error", "multi-line"],
+    "vue/multi-word-component-names": "off",
+    "vue/no-multiple-template-root": "off",
+    "vue/no-v-model-argument": "off"
+  }
+}

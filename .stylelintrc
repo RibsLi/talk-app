@@ -1,0 +1,15 @@
+{
+  "customSyntax": "postcss-html",
+  "extends": ["stylelint-config-standard", "stylelint-config-idiomatic-order"],
+  "rules": {
+    "unit-no-unknown": [true, { "ignoreUnits": ["rpx"] }],
+    "selector-pseudo-class-no-unknown": [true, { "ignorePseudoClasses": ["deep"] }],
+    "alpha-value-notation": "number",
+    "color-function-notation": "legacy",
+    "declaration-empty-line-before": "never",
+    "function-no-unknown": [true, { "ignoreFunctions": ["v-bind"] }]
+  },
+  "ignoreFiles": [
+    "src/uni_modules/**"
+  ]
+}

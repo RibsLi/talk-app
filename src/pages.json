@@ -1,0 +1,57 @@
+{
+	"pages": [
+		{
+			"path": "pages/index/index"
+		},
+    {
+			"path": "pages/index/home",
+      "style": {
+        "navigationBarTitleText": "畅聊"
+      }
+		},
+    {
+      "path": "pages/index/communication",
+      "style": {
+        "navigationBarTitleText": "通讯录"
+      }
+    },
+    {
+      "path": "pages/index/dynamically",
+      "style": {
+        "navigationBarTitleText": "动态"
+      }
+    },
+    {
+      "path": "pages/index/user",
+      "style": {
+        "navigationBarTitleText": "我"
+      }
+    }
+	],
+  "subPackages": [
+    {
+      "root": "pages/user",
+      "pages": [
+        {
+          "path": "setting",
+          "style": {
+            "navigationBarTitleText": "设置"
+          }
+        }
+      ]
+    }
+  ],
+	"globalStyle": {
+    "navigationStyle": "custom",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "",
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "backgroundColor": "#F8F8F8"
+	},
+	"easycom": {
+		"autoscan": true,
+		"custom": {
+			"^(.*)": "@/components/$1.vue"
+		}
+	}
+}
