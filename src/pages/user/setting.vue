@@ -15,9 +15,9 @@
           </view>
         </view>
       </view>
-      <view class="h-80 lh-80 bg-primary text-white mx-50 rounded-40 mb-40 text-center text-base" @click="logout">
+      <button class="h-80 lh-80 bg-primary text-white mx-50 mb-100 rounded-40 text-center text-base" hover-class="bg-primary opacity-80" @click="logout">
         退出登录
-      </view>
+      </button>
     </view>
   </Layout>
 </template>
@@ -32,5 +32,23 @@ const userinfo = ref([
   { name: '密码', type: 'passwords', data: '' }
 ])
 
-function logout() { uni.navigateBack() }
+function logout() {
+  uni.showModal({
+    content: '退出登录',
+    confirmText: '退出',
+    confirmColor: '#f00'
+  }).then(res => {
+    res.confirm && uni.redirectTo({ url: '/pages/index/login' })
+  })
+}
 </script>
+
+<style scoped>
+:deep(.uni-modal__bd) {
+  color: #070707;
+  font-size: 32rpx;
+}
+:deep(.uni-modal__btn, .uni-modal__btn_primary) {
+  font-size: 32rpx;
+}
+</style>

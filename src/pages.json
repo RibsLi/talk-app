@@ -1,5 +1,11 @@
 {
 	"pages": [
+    {
+			"path": "pages/index/login",
+      "style": {
+        "navigationBarTitleText": "登录"
+      }
+		},
 		{
 			"path": "pages/index/index"
 		},
@@ -36,6 +42,17 @@
           "path": "setting",
           "style": {
             "navigationBarTitleText": "设置"
+          }
+        }
+      ]
+    },
+    {
+      "root": "pages/dialogue",
+      "pages": [
+        {
+          "path": "index",
+          "style": {
+            "navigationBarTitleText": ""
           }
         }
       ]
