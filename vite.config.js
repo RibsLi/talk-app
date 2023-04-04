@@ -15,12 +15,12 @@ export default defineConfig({
         'pinia',
         '@vueuse/core',
         {
-          '@dcloudio/uni-app': ['onLoad', 'onShow', 'onReady', 'onHide', 'onUnload'],
+          '@dcloudio/uni-app': ['onLaunch', 'onLoad', 'onShow', 'onReady', 'onHide', 'onUnload'],
           lodash: '_',
           dayjs: [['default', 'dayjs']]
         }
       ],
-      dirs: ['src/store', 'src/composables'],
+      dirs: ['src/store', 'src/composables', 'src/api'],
       dts: 'src/auto-imports.d.ts', // Default `./auto-imports.d.ts`
       eslintrc: {
         enabled: true, // Default `false`

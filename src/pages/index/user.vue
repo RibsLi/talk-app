@@ -5,15 +5,15 @@
     <view class="w-full h-full flex flex-col justify-between" style="backdrop-filter: blur(10px); background-color: rgba(255, 255, 255, 0.5)">
       <view class="flex flex-col items-center">
         <view class="w-280 h-280 rounded-28 mt-100 overflow-hidden relative">
-          <image :src="avatar ? avatar : $icons[current].defaultAvatar" mode="aspectFill" class="w-full h-full rounded-140 bg-cover" />
-          <image v-if="current" :src="$icons[current].icon" mode="aspectFill" class="w-30 h-30 absolute bottom-20 right-20 rounded-20 p-5 bg-cover" :class="current === 'male' ? 'bg-blue' : 'bg-red'" />
+          <image :src="userData.avatar ? userData.avatar : $icons[gender].defaultAvatar" mode="aspectFill" class="w-full h-full rounded-140 bg-cover" />
+          <image :src="$icons[gender].icon" mode="aspectFill" class="w-30 h-30 absolute bottom-20 right-20 rounded-20 p-5 bg-cover" :class="gender === 'male' ? 'bg-blue' : 'bg-red'" />
         </view>
         <view class="flex flex-col items-center mx-80">
           <text class="mt-30 mb-50 text-lg text-main-1 font-bold">
-            德玛西亚
+            {{ userData.username }}
           </text>
           <text class="text-base lh-60 text-main-2">
-            德玛西亚万岁，人在塔在，正义与我同在，刻不容缓。
+            {{ userData.signature }}
           </text>
         </view>
       </view>
@@ -25,8 +25,13 @@
 </template>
 
 <script setup>
-const avatar = 'https://tse1-mm.cn.bing.net/th/id/OET.69e3368a10d64e6c9d422a8cad70723b?w=272&h=272&c=7&rs=1&o=5&pid=1.9'
-const current = ref('male')
+const gender = ref()
+const userData = ref()
+
+onShow(() => {
+  gender.value = uni.$store.userData.gender === 1 ? 'male' : 'female'
+  userData.value = uni.$store.userData
+})
 
 function go() {
   uni.navigateTo({ url: '/pages/user/setting' })

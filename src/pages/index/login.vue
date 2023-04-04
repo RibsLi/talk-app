@@ -38,10 +38,11 @@
 const login = ref(true)
 const valiForm = ref()
 const valiFormData = reactive({
-  username: '',
-  password: '',
+  username: 'admin',
+  password: '123456',
   rePassword: ''
 })
+// 校验规则
 const rules = {
   username: {
     rules: [{
@@ -71,6 +72,7 @@ const rules = {
   }
 }
 
+// 切换登录和注册事件
 function toggle() {
   for (const item in valiFormData) {
     valiFormData[item] = ''
@@ -78,13 +80,28 @@ function toggle() {
   login.value = !login.value
 }
 
+// 表单提交事件
 function submit() {
   valiForm.value.validate().then(res => {
-    console.log('success', res)
-    uni.showToast({
-      title: '校验通过'
-    })
-    uni.redirectTo({ url: '/pages/index/index' })
+    if (login.value) {
+      // 登录请求
+      api.resolve('login', valiFormData).then(res => {
+        uni.setStorageSync('userData', res)
+        uni.setStorageSync('authorization', res.token)
+        uni.$store.userData = res
+        uni.$store.authorization = res.token
+        uni.redirectTo({ url: '/pages/index/index' })
+      })
+    } else {
+      // 注册请求
+      api.resolve('register', valiFormData).then(res => {
+        uni.showToast({
+          title: res.message,
+          icon: 'none'
+        })
+        login.value = true
+      })
+    }
   }).catch(err => {
     console.info('err', err)
   })

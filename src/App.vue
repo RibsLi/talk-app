@@ -1,6 +1,16 @@
 <script setup>
-// 获取并存储设备信息
-const systemInfo = uni.getSystemInfoSync()
-uni.setStorageSync('systemInfo', systemInfo)
-uni.$store.systemInfo = systemInfo
+onLaunch(options => {
+
+  // uni.$store.userData = uni.getStorageSync('userData')
+  // uni.$store.authorization = uni.getStorageSync('authorization')
+  // if (!(uni.$store.authorization || uni.getStorageSync('authorization'))) return uni.redirectTo({ url: '/pages/index/login' })
+
+  // api.resolve('getUserinfo').then(res => {
+  //   console.log('用户信息', res)
+  //   uni.setStorageSync('userData', res)
+  //   uni.setStorageSync('authorization', res.token)
+  //   uni.$store.userData = res
+  //   uni.$store.authorization = res.token
+  // })
+})
 </script>

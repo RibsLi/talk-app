@@ -1,8 +1,8 @@
 export const useStore = defineStore('index', () => {
   const data = reactive({
-    authentication: '', // 授权码
-    currentTabbar: 'home', // 当前选中的tabbar
-    systemInfo: {} // 设备信息
+    authorization: uni.getStorageSync('authorization') || '', // 鉴权码
+    userData: uni.getStorageSync('userData') || null, // 用户信息
+    currentTabbar: 'home' // 当前选中的tabbar
   })
 
   return {
