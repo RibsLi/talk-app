@@ -5,8 +5,8 @@
     <view class="w-full h-full flex flex-col justify-between" style="backdrop-filter: blur(10px); background-color: rgba(255, 255, 255, 0.5)">
       <view class="flex flex-col items-center">
         <view class="w-280 h-280 rounded-28 mt-100 overflow-hidden relative">
-          <image :src="userData.avatar ? userData.avatar : $icons[gender].defaultAvatar" mode="aspectFill" class="w-full h-full rounded-140 bg-cover" />
-          <image :src="$icons[gender].icon" mode="aspectFill" class="w-30 h-30 absolute bottom-20 right-20 rounded-20 p-5 bg-cover" :class="gender === 'male' ? 'bg-blue' : 'bg-red'" />
+          <image :src="userData?.avatar ? userData?.avatar : $icons[gender]?.defaultAvatar" mode="aspectFill" class="w-full h-full rounded-140 bg-cover" />
+          <image :src="$icons[gender]?.icon" mode="aspectFill" class="w-30 h-30 absolute bottom-20 right-20 rounded-20 p-5 bg-cover" :class="gender === 'male' ? 'bg-blue' : 'bg-red'" />
         </view>
         <view class="flex flex-col items-center mx-80">
           <text class="mt-30 mb-50 text-lg text-main-1 font-bold">
@@ -17,7 +17,7 @@
           </text>
         </view>
       </view>
-      <button class="h-80 lh-80 bg-primary text-white mx-50 rounded-40 mb-40 text-center text-base" hover-class="bg-primary opacity-80" @click="go">
+      <button class="h-80 lh-80 bg-primary text-white mx-50 rounded-40 mb-40 text-center text-base" hover-class="opacity-80" @click="go">
         设置
       </button>
     </view>
@@ -25,8 +25,8 @@
 </template>
 
 <script setup>
-const gender = ref()
-const userData = ref()
+const gender = ref('male')
+const userData = ref({})
 
 onShow(() => {
   gender.value = uni.$store.userData.gender === 1 ? 'male' : 'female'

@@ -27,7 +27,7 @@
           </text>
         </view>
       </view>
-      <button class="w-full h-80 lh-80 bg-primary text-white mx-50 rounded-40 mt-100 text-center text-lg" hover-class="bg-primary opacity-80" @click="submit">
+      <button class="w-full h-80 lh-80 bg-primary text-white mx-50 rounded-40 mt-100 text-center text-lg" hover-class="opacity-80" @click="submit">
         {{ login ? '登录' : '注册' }}
       </button>
     </view>

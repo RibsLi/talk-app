@@ -20,14 +20,22 @@
           </view>
         </view>
       </view>
-      <button class="h-80 lh-80 bg-primary text-white mx-50 mb-100 rounded-40 text-center text-base" hover-class="bg-primary opacity-80" @click="logout">
+      <button class="h-80 lh-80 bg-primary text-white mx-50 mb-100 rounded-40 text-center text-base" hover-class="opacity-80" @click="logout">
         退出登录
       </button>
 
       <!-- 弹窗组件 -->
       <uni-popup ref="popup">
         <view class="w-600 rounded-10 bg-white overflow-hidden">
-          <textarea v-model="textareaValue" :placeholder="`请填写新的${current.name}`" auto-height :maxlength="current.maxlength" class="p-30 box-border break-all" />
+          <textarea v-if="current?.type === 'signature'" v-model="textareaValue" :placeholder="`请填写新的${current?.name}`" :maxlength="current?.maxlength" class="p-30 box-border break-all text-base" />
+          <input
+            v-else
+            v-model="textareaValue"
+            type="text"
+            :placeholder="`请填写新的${current?.name}`"
+            :maxlength="current?.maxlength"
+            class="text-base p-30"
+          >
           <view class="flex justify-around items-center mt-10 border-t-1 border-solid border-divider border-x-none border-b-none">
             <view class="h-90 lh-90 flex-1 bg-white text-main-2 text-center text-lg border-r-1 border-solid border-divider border-y-none border-l-none" @click="dialogClick('cancel')">
               取消
@@ -53,15 +61,15 @@ const userinfo = reactive([
   { name: '密码', type: 'passwords', maxlength: 20, placeholder: '******', data: '' }
 ])
 const popup = ref()
-const current = ref()
-const textareaValue = ref()
+const current = ref({})
+const textareaValue = ref('')
 
 watch(() => uni.$store.userData, () => handleUserinfo())
 
 // 用户信息回显
 handleUserinfo()
 function handleUserinfo() {
-  userinfo.map(item => {
+  uni.$store.userData && userinfo.map(item => {
     item.data = uni.$store.userData[item.type]
     if (item.type === 'gender') {
       item.data = item.data === 1 ? '男' : '女'
@@ -100,6 +108,7 @@ function updateUserinfo(val) {
   api.resolve('updateUserinfo', { [current.value.type]: val }).then(() => {
     getUserinfo()
     popup.value.close()
+    textareaValue.value = ''
   })
 }
 

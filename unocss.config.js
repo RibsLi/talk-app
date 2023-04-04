@@ -59,7 +59,7 @@ export default defineConfig({
     getCSS: () => {
       const css = entriesToCss(Object.entries(theme.preflightBase))
       // const selector = process.env.UNI_PLATFORM === 'mp-weixin' ? 'view' : '*'
-      const selector = isH5 ? '*' : 'view,text,button,input,image'
+      const selector = isH5 ? '*' : 'view,text,button,input,image,textarea'
       return `${selector},::before,::after{${css}}::backdrop{${css}}`
       // isH5
       //   ? `body { font-size: ${theme.fontSize.base[0]}; }`
