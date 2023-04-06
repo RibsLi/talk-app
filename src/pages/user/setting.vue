@@ -2,7 +2,7 @@
 <template>
   <Layout title="设置">
     <view class="w-full h-full flex flex-col justify-between">
-      <view class="flex flex-col px-30 pt-20">
+      <view class="flex flex-col p-20">
         <view v-for="item in userinfo" :key="item.type" class="flex justify-between items-center" @click="userinfoClick(item)">
           <text class="min-w-80 text-base text-main-1">
             {{ item.name }}

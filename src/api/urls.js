@@ -7,7 +7,8 @@ export default function(type) {
     register: ['/register', 'post', 1], // 注册
     login: ['/login', 'post', 1], // 登录
     getUserinfo: ['/getUserinfo', 'get', 1], // 获取用户信息
-    updateUserinfo: ['/updateUserinfo', 'post', 1] // 修改用户信息
+    updateUserinfo: ['/updateUserinfo', 'post', 1], // 修改用户信息
+    search: ['/search', 'post', 1] // 搜索朋友
   }
 
   return urlObj[type] || ''

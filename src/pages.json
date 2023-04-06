@@ -56,6 +56,17 @@
           }
         }
       ]
+    },
+    {
+      "root": "pages/communication",
+      "pages": [
+        {
+          "path": "new-friend",
+          "style": {
+            "navigationBarTitleText": ""
+          }
+        }
+      ]
     }
   ],
 	"globalStyle": {

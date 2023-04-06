@@ -4,7 +4,7 @@
     <scroll-view scroll-y class="h-full">
       <uni-swipe-action>
         <uni-swipe-action-item v-for="item in list" :key="item" :threshold="0" :right-options="options" @click="deleteEv">
-          <view class="px-30 pt-10">
+          <view class="p-20">
             <DialogueCard :content="item" />
           </view>
         </uni-swipe-action-item>

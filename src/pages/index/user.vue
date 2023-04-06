@@ -10,10 +10,10 @@
         </view>
         <view class="flex flex-col items-center mx-80">
           <text class="mt-30 mb-50 text-lg text-main-1 font-bold">
-            {{ userData.username }}
+            {{ userData?.username }}
           </text>
           <text class="text-base lh-60 text-main-2">
-            {{ userData.signature }}
+            {{ userData?.signature }}
           </text>
         </view>
       </view>
@@ -29,7 +29,7 @@ const gender = ref('male')
 const userData = ref({})
 
 onShow(() => {
-  gender.value = uni.$store.userData.gender === 1 ? 'male' : 'female'
+  gender.value = uni.$store.userData?.gender === 1 ? 'male' : 'female'
   userData.value = uni.$store.userData
 })
 
