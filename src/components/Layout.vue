@@ -11,7 +11,7 @@ props.title && uni.setNavigationBarTitle({ title: props.title })
 
 <template>
   <view>
-    <view class="w-full fixed top-0 bg-default bottom-[env(safe-area-inset-bottom)]" :class="showFooter && 'pb-120'">
+    <view class="w-full fixed top-0 bg-default bottom-safe" :class="showFooter && 'pb-120'">
       <slot />
     </view>
 

@@ -2,11 +2,7 @@
 <template>
   <Layout title="新的朋友">
     <view class="bg-primary">
-      <uni-search-bar
-        placeholder="账号/手机号"
-        cancel-button="none"
-        @confirm="search"
-      />
+      <uni-search-bar placeholder="账号/手机号" cancel-button="none" @confirm="search" />
     </view>
     <scroll-view scroll-y class="h-full">
       <view class="p-20">

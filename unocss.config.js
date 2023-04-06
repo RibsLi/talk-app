@@ -1,7 +1,7 @@
-import { defineConfig, presetAttributify, transformerDirectives, transformerVariantGroup } from 'unocss'
+import { defineConfig, presetUno, presetAttributify, transformerDirectives, transformerVariantGroup } from 'unocss'
 import { entriesToCss } from '@unocss/core'
 import { theme } from '@unocss/preset-mini'
-import { presetApplet, presetRemToRpx, transformerApplet, transformerAttributify } from 'unocss-applet'
+import { presetApplet, presetRemToRpx } from 'unocss-applet'
 
 // UniApp
 const isH5 = process.env.UNI_PLATFORM === 'h5'
@@ -55,6 +55,10 @@ export default defineConfig({
       '3xl': ['48rpx /* 24px */', null]
     }
   },
+  shortcuts: [
+    // 处理安全区域
+    [/^(top|left|right|bottom|((m|p)([trbl]?)))-safe(?:-(\d+))?$/, ([, prefix,,,, value]) => handlerSafeArea(prefix, value)]
+  ],
   preflights: [{
     getCSS: () => {
       const css = entriesToCss(Object.entries(theme.preflightBase))
@@ -71,15 +75,26 @@ export default defineConfig({
      * you can add `presetAttributify()` here to enable unocss attributify mode prompt
      * although preset is not working for applet, but will generate useless css
      */
+    presetUno(),
     presetApplet({ enable: !isH5 }),
     presetAttributify(),
     presetRemToRpx({ baseFontSize: 4, screenWidth: 750 })
   ],
   transformers: [
     transformerDirectives(),
-    transformerVariantGroup(),
-    // Don't change the following order
-    transformerAttributify(),
-    transformerApplet()
+    transformerVariantGroup()
   ]
 })
+
+// 处理安全区域
+function handlerSafeArea(prefix, value) {
+  if (prefix.length === 1) {
+    return `${prefix}-[env(safe-area-inset-top)_env(safe-area-inset-left)_env(safe-area-inset-right)_env(safe-area-inset-bottom)]`
+  }
+
+  const match = { t: 'top', r: 'right', b: 'bottom', l: 'left' }
+  const direction = match[prefix[1]] || prefix
+  return value
+    ? `${prefix}-[calc(env(safe-area-inset-${direction})+${value}rpx)]`
+    : `${prefix}-[env(safe-area-inset-${direction})]`
+}

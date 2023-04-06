@@ -3,10 +3,7 @@
   <Layout title="登录">
     <image src="https://qiniu.shidiankeji.com/imgs/85e86130-af08-42f1-aea9-497eeabdf850.png" mode="aspectFill" class="w-full h-full absolute top-0 z--1" />
     <view class="w-full h-full flex flex-col justify-center items-center box-border px-50">
-      <view
-        class="w-full h-450 flex flex-col justify-around rounded-20 p-30 box-border border-solid border border-divider"
-        style="backdrop-filter: blur(5px); background-color: rgba(255, 255, 255, 0.6);"
-      >
+      <view class="w-full flex flex-col justify-around rounded-20 p-30 box-border border-solid border border-divider bg-[rgba(255,255,255,0.3)] backdrop-blur">
         <view>
           <uni-forms ref="valiForm" :rules="rules" :model-value="valiFormData" :label-width="70">
             <uni-forms-item label="用户名" name="username">
@@ -20,7 +17,7 @@
             </uni-forms-item>
           </uni-forms>
         </view>
-        <view class="text-main-2 text-base  text-right">
+        <view class="text-main-2 text-base text-right">
           {{ login ? '没有账号？' : '有账号？' }}
           <text class="text-primary" @click="toggle">
             {{ login ? '去注册' : '去登录' }}

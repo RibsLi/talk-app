@@ -1,5 +1,5 @@
 <script setup>
 onLaunch(options => {
-  if (!(uni.$store.authorization || uni.getStorageSync('authorization'))) return uni.redirectTo({ url: '/pages/index/login' })
+  uni.redirectTo({ url: !(uni.$store.authorization || uni.getStorageSync('authorization')) ? '/pages/index/login' : '/pages/index/index' })
 })
 </script>

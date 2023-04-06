@@ -1,5 +1,5 @@
 <template>
-  <view class="w-full h-120 flex justify-around items-center text-center fixed bottom-[env(safe-area-inset-bottom)] bg-white z-10">
+  <view class="w-full h-120 flex justify-around items-center text-center fixed bottom-safe bg-white z-10">
     <view v-for="item in tabbar" :key="item.value" @click="$store.currentTabbar = item.value">
       <uni-badge :text="item.count" absolute="rightTop" size="small" :offset="[3, 3]" :custom-style="{backgroundColor:'#3EC8A4'}">
         <view class="flex-1 flex flex-col items-center">

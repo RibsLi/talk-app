@@ -128,6 +128,7 @@ function logout() {
     confirmColor: '#f00'
   }).then(res => {
     if (res.confirm) {
+      uni.$store.currentTabbar = 'home'
       uni.$store.userData = null
       uni.$store.authorization = ''
       uni.removeStorageSync('userData')

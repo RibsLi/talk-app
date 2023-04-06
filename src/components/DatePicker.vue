@@ -1,3 +1,46 @@
+<template>
+  <view class="gpp-datePicker " @click.stop="show">
+    <slot />
+    <view
+      class="g-dp-mask"
+      :class="{ 'show': pipkerShowFlag }"
+      catchtouchmove="true"
+      @click.stop="hide"
+      @touchmove.stop.prevent
+    />
+    <view class="g-dp-content reactive pb-15 bg-white" :class="{ 'show': pipkerShowFlag }" catchtouchmove="true" @touchmove.stop.prevent>
+      <view class="g-dp-ctt-head">
+        <view class="text-main-2" @click.stop="onCancel">
+          取消
+        </view>
+        <view>选择日期</view>
+        <view class="g-dp-ctt-hd-btn" @click.stop="onConfirm">
+          确定
+        </view>
+      </view>
+      <view class="g-dp-ctt-wrapper">
+        <picker-view indicator-style="height: 80rpx" class="h-full" :value="selectedValue" @change="wrapperChange">
+          <picker-view-column v-if="shows.years">
+            <view v-for="(item, index) in years" :key="index" class="h-80 flex items-center justify-center">
+              {{ item }}年
+            </view>
+          </picker-view-column>
+          <picker-view-column v-if="shows.months">
+            <view v-for="(item, index) in months" :key="index" class="h-80 flex items-center justify-center">
+              {{ dateFormate(item) }}月
+            </view>
+          </picker-view-column>
+          <picker-view-column v-if="shows.days">
+            <view v-for="(item, index) in days" :key="index" class="h-80 flex items-center justify-center">
+              {{ dateFormate(item) }}日
+            </view>
+          </picker-view-column>
+        </picker-view>
+      </view>
+    </view>
+  </view>
+</template>
+
 <script>
 function getNowDate() {
   const date = new Date()
@@ -268,49 +311,6 @@ export default {
   }
 }
 </script>
-
-<template>
-  <view class="gpp-datePicker " @click.stop="show">
-    <slot />
-    <view
-      class="g-dp-mask"
-      :class="{ 'show': pipkerShowFlag }"
-      catchtouchmove="true"
-      @click.stop="hide"
-      @touchmove.stop.prevent
-    />
-    <view class="g-dp-content reactive pb-15 bg-white" :class="{ 'show': pipkerShowFlag }" catchtouchmove="true" @touchmove.stop.prevent>
-      <view class="g-dp-ctt-head">
-        <view class="text-main-2" @click.stop="onCancel">
-          取消
-        </view>
-        <view>选择日期</view>
-        <view class="g-dp-ctt-hd-btn" @click.stop="onConfirm">
-          确定
-        </view>
-      </view>
-      <view class="g-dp-ctt-wrapper">
-        <picker-view indicator-style="height: 80rpx" class="h-full" :value="selectedValue" @change="wrapperChange">
-          <picker-view-column v-if="shows.years">
-            <view v-for="(item, index) in years" :key="index" class="h-80 flex items-center justify-center">
-              {{ item }}年
-            </view>
-          </picker-view-column>
-          <picker-view-column v-if="shows.months">
-            <view v-for="(item, index) in months" :key="index" class="h-80 flex items-center justify-center">
-              {{ dateFormate(item) }}月
-            </view>
-          </picker-view-column>
-          <picker-view-column v-if="shows.days">
-            <view v-for="(item, index) in days" :key="index" class="h-80 flex items-center justify-center">
-              {{ dateFormate(item) }}日
-            </view>
-          </picker-view-column>
-        </picker-view>
-      </view>
-    </view>
-  </view>
-</template>
 
 <style lang="scss">
 .gpp-datePicker {

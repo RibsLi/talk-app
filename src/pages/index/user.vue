@@ -1,8 +1,8 @@
 <!-- 我 -->
 <template>
   <Layout title="我" show-footer>
-    <image src="https://tse1-mm.cn.bing.net/th/id/OET.69e3368a10d64e6c9d422a8cad70723b?w=272&h=272&c=7&rs=1&o=5&pid=1.9" mode="aspectFill" class="w-full h-full bg-cover absolute top-0" />
-    <view class="w-full h-full flex flex-col justify-between" style="backdrop-filter: blur(10px); background-color: rgba(255, 255, 255, 0.5)">
+    <image :src="userData?.avatar ? userData?.avatar : $icons[gender]?.defaultAvatar" mode="aspectFill" class="w-full h-full bg-cover absolute top-0 z--1" />
+    <view class="w-full h-full flex flex-col justify-between bg-[rgba(255,255,255,0.5)] backdrop-blur">
       <view class="flex flex-col items-center">
         <view class="w-280 h-280 rounded-28 mt-100 overflow-hidden relative">
           <image :src="userData?.avatar ? userData?.avatar : $icons[gender]?.defaultAvatar" mode="aspectFill" class="w-full h-full rounded-140 bg-cover" />
